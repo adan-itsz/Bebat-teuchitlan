@@ -30,7 +30,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    BeaconManager beaconManager = new BeaconManager(this.getApplicationContext());
+        BeaconManager beaconManager;
     private boolean notificationAlreadyShown = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +39,21 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        EstimoteSDK.initialize(getApplicationContext(), "<teuchitlan-84i>", "<4f94bfb6df0d2b5ddff8c4d4b66ef73e>");
+        beaconManager = new BeaconManager(getApplicationContext());
+        EstimoteSDK.initialize(getApplicationContext(), "teuchitlan-84i", "4f94bfb6df0d2b5ddff8c4d4b66ef73e");
 
         beaconManager.setLocationListener(new BeaconManager.LocationListener() {
             @Override
             public void onLocationsFound(List<EstimoteLocation> beacons) {
                 Log.d("LocationListener", "Nearby beacons: " + beacons);
 
-                String beaconId="d21864286f421e1fbf75fe465ce66a38";
+                String beaconId="[d21864286f421e1fbf75fe465ce66a38]";
                 for (EstimoteLocation beacon : beacons) {
+                    Log.d("xxxxxx","entro al for de beacon");
+                    Log.d("numero de beacon",beacon.id.toString());
                     if (beacon.id.toString().equals(beaconId)
                             && RegionUtils.computeProximity(beacon) == Proximity.NEAR) {
+                        Log.d("xxxxxx","entro al if de beacon");
                         showNotification("Hello world", "Looks like you're near a beacon.");
                     }
                 }
@@ -153,6 +157,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void showNotification(String title, String message) {
+        Log.d("xxxxx","entro a showNoti");
         if (notificationAlreadyShown) { return; }
 
         Intent notifyIntent = new Intent(this, MainActivity.class);
