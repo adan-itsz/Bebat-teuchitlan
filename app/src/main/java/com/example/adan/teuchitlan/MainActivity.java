@@ -5,6 +5,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         beaconManager = new BeaconManager(getApplicationContext());
-        EstimoteSDK.initialize(getApplicationContext(), "teuchitlan-84i", "4f94bfb6df0d2b5ddff8c4d4b66ef73e");
+        EstimoteSDK.initialize(getApplicationContext(), "<teuchitlan-84i>", "<4f94bfb6df0d2b5ddff8c4d4b66ef73e>");
 
         beaconManager.setLocationListener(new BeaconManager.LocationListener() {
             @Override
@@ -54,7 +56,8 @@ public class MainActivity extends AppCompatActivity
                     if (beacon.id.toString().equals(beaconId)
                             && RegionUtils.computeProximity(beacon) == Proximity.NEAR) {
                         Log.d("xxxxxx","entro al if de beacon");
-                        showNotification("Hello world", "Looks like you're near a beacon.");
+                        Bitmap bMap = BitmapFactory.decodeFile("/home/adan/Descargas/Teuchitlan/app/src/main/res/drawable/beaconazul.png");
+                        showNotification("Hello world", "Looks like you're near a beacon.",bMap);
                     }
                 }
             }
@@ -156,7 +159,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void showNotification(String title, String message) {
+    public void showNotification(String title, String message, Bitmap bMap) {
         Log.d("xxxxx","entro a showNoti");
         if (notificationAlreadyShown) { return; }
 
@@ -165,7 +168,8 @@ public class MainActivity extends AppCompatActivity
         PendingIntent pendingIntent = PendingIntent.getActivities(this, 0,
                 new Intent[] { notifyIntent }, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification notification = new Notification.Builder(this)
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(bMap)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setAutoCancel(true)
