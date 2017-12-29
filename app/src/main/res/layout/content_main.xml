@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FFFFFF"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,10 +12,44 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="127dp"
+        android:layout_height="128dp"
+        app:srcCompat="@drawable/lugarActual"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="288dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton7"
+        android:layout_width="125dp"
+        android:layout_height="131dp"
+        app:srcCompat="@drawable/Recorrido"
+        tools:layout_editor_absoluteX="213dp"
+        tools:layout_editor_absoluteY="288dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton8"
+        android:layout_width="133dp"
+        android:layout_height="137dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton9"
+        app:srcCompat="@drawable/ProgresoMap"
+        tools:layout_editor_absoluteY="55dp"
+        android:layout_marginRight="47dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton9"
+        android:layout_width="132dp"
+        android:layout_height="130dp"
+        android:enable="true"
+        app:srcCompat="@drawable/NivelProgreso"
+        tools:layout_editor_absoluteX="213dp"
+        tools:layout_editor_absoluteY="55dp" />
 
 </android.support.constraint.ConstraintLayout>
