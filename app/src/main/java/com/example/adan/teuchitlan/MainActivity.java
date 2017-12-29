@@ -50,15 +50,29 @@ public class MainActivity extends AppCompatActivity
                 Log.d("LocationListener", "Nearby beacons: " + beacons);
 
                 String beaconId="[d21864286f421e1fbf75fe465ce66a38]";
+                String beaconAzul="[e062c4d5b22baeeacf2718691ac7902c]";
+                String beaconMenta="[80455b21003d1c2a550819a5d942c21b]";
                 for (EstimoteLocation beacon : beacons) {
                     Log.d("xxxxxx","entro al for de beacon");
                     Log.d("numero de beacon",beacon.id.toString());
                     if (beacon.id.toString().equals(beaconId)
                             && RegionUtils.computeProximity(beacon) == Proximity.NEAR) {
                         Log.d("xxxxxx","entro al if de beacon");
-                        Bitmap bMap = BitmapFactory.decodeFile("/home/adan/Descargas/Teuchitlan/app/src/main/res/drawable/beaconazul.png");
-                        showNotification("Hello world", "Looks like you're near a beacon.",bMap);
+                        Bitmap bMap = BitmapFactory.decodeFile("/home/adan/Descargas/Teuchitlan/app/src/main/res/drawable/beaconyellow.png");
+                        showNotification("Descubriste beacon Amarillo", "aprende de el.",bMap);
                     }
+                    else if(beacon.id.toString().equals(beaconAzul)
+                            && RegionUtils.computeProximity(beacon) == Proximity.NEAR){
+                        Bitmap bMap = BitmapFactory.decodeFile("/home/adan/Descargas/Teuchitlan/app/src/main/res/drawable/beaconblue.png");
+                        showNotification("Descubriste beacon Azul", "aprende de el.",bMap);
+                    }
+
+                    else if(beacon.id.toString().equals(beaconAzul)
+                            && RegionUtils.computeProximity(beacon) == Proximity.NEAR){
+                        Bitmap bMap = BitmapFactory.decodeFile("/home/adan/Descargas/Teuchitlan/app/src/main/res/drawable/beaconblue.png");
+                        showNotification("Descubriste beacon Menta", "aprende de el.",bMap);
+                    }
+
                 }
             }
         });
@@ -160,13 +174,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void showNotification(String title, String message, Bitmap bMap) {
-        Log.d("xxxxx","entro a showNoti");
+
         if (notificationAlreadyShown) { return; }
 
         Intent notifyIntent = new Intent(this, MainActivity.class);
         notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivities(this, 0,
                 new Intent[] { notifyIntent }, PendingIntent.FLAG_UPDATE_CURRENT);
+        Log.d("xxxxx","entro a showNoti");
         Notification notification = new Notification.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setLargeIcon(bMap)
