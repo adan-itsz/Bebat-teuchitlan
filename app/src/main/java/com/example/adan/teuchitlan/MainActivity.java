@@ -49,28 +49,28 @@ public class MainActivity extends AppCompatActivity
             public void onLocationsFound(List<EstimoteLocation> beacons) {
                 Log.d("LocationListener", "Nearby beacons: " + beacons);
 
-                String beaconId="[d21864286f421e1fbf75fe465ce66a38]";
+                String beaconRosa="[cd28bb55cf08c21ccb05b2bb656a7632]";
                 String beaconAzul="[e062c4d5b22baeeacf2718691ac7902c]";
                 String beaconMenta="[80455b21003d1c2a550819a5d942c21b]";
                 for (EstimoteLocation beacon : beacons) {
                     Log.d("xxxxxx","entro al for de beacon");
                     Log.d("numero de beacon",beacon.id.toString());
-                    if (beacon.id.toString().equals(beaconId)
+                    if (beacon.id.toString().equals(beaconRosa)
                             && RegionUtils.computeProximity(beacon) == Proximity.NEAR) {
                         Log.d("xxxxxx","entro al if de beacon");
                         Bitmap bMap = BitmapFactory.decodeFile("/home/adan/Descargas/Teuchitlan/app/src/main/res/drawable/beaconyellow.png");
-                        showNotification("Descubriste beacon Amarillo", "aprende de el.",bMap);
+                        showNotification("Descubriste beacon ", "aprende de el.",bMap,"rosa");
                     }
                     else if(beacon.id.toString().equals(beaconAzul)
                             && RegionUtils.computeProximity(beacon) == Proximity.NEAR){
                         Bitmap bMap = BitmapFactory.decodeFile("/home/adan/Descargas/Teuchitlan/app/src/main/res/drawable/beaconblue.png");
-                        showNotification("Descubriste beacon Azul", "aprende de el.",bMap);
+                        showNotification("Descubriste beacon ", "aprende de el.",bMap,"azul");
                     }
 
-                    else if(beacon.id.toString().equals(beaconAzul)
+                    else if(beacon.id.toString().equals(beaconMenta)
                             && RegionUtils.computeProximity(beacon) == Proximity.NEAR){
                         Bitmap bMap = BitmapFactory.decodeFile("/home/adan/Descargas/Teuchitlan/app/src/main/res/drawable/beaconblue.png");
-                        showNotification("Descubriste beacon Menta", "aprende de el.",bMap);
+                        showNotification("Descubriste beacon ", "aprende de el.",bMap,"menta");
                     }
 
                 }
@@ -173,11 +173,12 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void showNotification(String title, String message, Bitmap bMap) {
+    public void showNotification(String title, String message, Bitmap bMap,String color) {
 
         if (notificationAlreadyShown) { return; }
 
-        Intent notifyIntent = new Intent(this, MainActivity.class);
+        Intent notifyIntent = new Intent(this, InformacionBeacon.class);
+        notifyIntent.putExtra("beacon",color);
         notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivities(this, 0,
                 new Intent[] { notifyIntent }, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity
         Notification notification = new Notification.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setLargeIcon(bMap)
-                .setContentTitle(title)
+                .setContentTitle(title + color)
                 .setContentText(message)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
