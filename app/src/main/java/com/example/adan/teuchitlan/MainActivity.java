@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.estimote.coresdk.common.config.EstimoteSDK;
 import com.estimote.coresdk.common.requirements.SystemRequirementsChecker;
@@ -31,16 +32,57 @@ import com.estimote.coresdk.service.BeaconManager;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
+
+
         implements NavigationView.OnNavigationItemSelectedListener {
         BeaconManager beaconManager;
     private boolean notificationAlreadyShown = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        Button btnMapaProgreso = (Button)findViewById(R.id.button);
+        btnMapaProgreso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), mapaProgreso.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
+        Button btnProgreso = (Button)findViewById(R.id.button2);
+        btnProgreso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), progreso.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
+        Button btnBeaconActual = (Button)findViewById(R.id.button3);
+        btnBeaconActual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), beaconActual.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
+        Button btnQueHacer = (Button)findViewById(R.id.button4);
+        btnQueHacer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), queHacer.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
         beaconManager = new BeaconManager(getApplicationContext());
         EstimoteSDK.initialize(getApplicationContext(), "<teuchitlan-84i>", "<4f94bfb6df0d2b5ddff8c4d4b66ef73e>");
 
@@ -78,14 +120,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -197,4 +232,5 @@ public class MainActivity extends AppCompatActivity
         notificationManager.notify(1, notification);
         notificationAlreadyShown = true;
     }
+
 }
