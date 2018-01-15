@@ -190,13 +190,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent intent = new Intent(getApplicationContext(), mapaProgreso.class);
+            startActivityForResult(intent,0);
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent = new Intent(getApplicationContext(), progreso.class);
+            startActivityForResult(intent,0);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent intent = new Intent(getApplicationContext(), beaconActual.class);
+            startActivityForResult(intent,0);
         } else if (id == R.id.nav_manage) {
-
+            Intent intent = new Intent(getApplicationContext(), queHacer.class);
+            startActivityForResult(intent,0);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

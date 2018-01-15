@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.adan.teuchitlan.mapaProgreso">
+    tools:context="com.example.adan.teuchitlan.queHacer">
 
     <RelativeLayout
         android:layout_width="368dp"
@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Mapa Progreso"
+            android:text="Que Hacer?"
             android:textSize="50sp" />
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

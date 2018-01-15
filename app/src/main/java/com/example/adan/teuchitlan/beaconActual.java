@@ -8,6 +8,6 @@ public class beaconActual extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_beacon_actual);
+        setContentView(R.layout.content_beacon_actual);
     }
 }

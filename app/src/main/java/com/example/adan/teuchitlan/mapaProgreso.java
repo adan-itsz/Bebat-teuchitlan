@@ -8,6 +8,6 @@ public class mapaProgreso extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mapa_progreso);
+        setContentView(R.layout.content_mapa_progreso);
     }
 }

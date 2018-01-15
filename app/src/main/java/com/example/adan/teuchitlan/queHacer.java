@@ -8,6 +8,6 @@ public class queHacer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_que_hacer);
+        setContentView(R.layout.content_que_hacer);
     }
 }
